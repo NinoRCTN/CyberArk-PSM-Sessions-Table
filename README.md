@@ -20,6 +20,11 @@ PSM-Sessions-Table -ServerList C:\TMP\ServerList.csv -numMinutes 2
 # Run with Cycles and Minutes
 PSM-Sessions-Table -ServerList C:\TMP\ServerList.csv -numCycles 5 -numMinutes 2
 
+# Requirements
+- The user used to connect to the servers must have the necessary permissions to be able to execute the commands.
+- To connect to the servers it is necessary to use valid credentials (domain user)
+- it is necessary that the servers are reachable from the client from which the script is executed
+
 # EXAMPLE File input
 computername,role,description
 PSM-1-01.mydomain.local,PSM,10.10.10.1 - PSM Pool 01
