@@ -5,7 +5,7 @@
   List the number of PSM sessions in a few minutes
 .PARAMETER <Parameter_Name>
 ServerList
-numcycles
+numCycles
 numMinutes
 .INPUTS
   
@@ -18,21 +18,19 @@ numMinutes
   Purpose/Change: 
   
 .EXAMPLE
-  PSM-RDP-Session-Table
+  PSM-RDP-Session-Table -ServerList  C:\TMP\ServerList.csv
   
   Run with Cycles 
-  PSM-RDP-Session-Table -ServerList C:\TMP\listserver.csv -numCycles 5
+  PSM-RDP-Session-Table -ServerList C:\TMP\ServerList.csv -numCycles 3
   
   Run with Minutes
-  PSM-RDP-Session-Table -ServerList C:\TMP\listserver.csv -numMinutes 2
+  PSM-RDP-Session-Table -ServerList C:\TMP\ServerList.csv -numMinutes 2
 
   Run with Cycles and Minutes
-  PSM-RDP-Session-Table -ServerList C:\TMP\listserver.csv -numCycles 5 -numMinutes 2
+  PSM-RDP-Session-Table -ServerList C:\TMP\ServerList.csv -numCycles 5 -numMinutes 2
 #>
 
 Param ([Parameter(Mandatory)]$ServerList, [Int32][ValidateRange(1,13)]$numCycles = 7, [Int32][ValidateRange(1,5)]$numMinutes = 5)
-
-#[ValidateSet(1,13)] [Int] $numCycles)
 
 Clear-Host
 
@@ -54,7 +52,6 @@ if (!$credential) { exit }
 
 # Number of servers in the list computername,role,description
 $numservers = $ServerList.Count
-# $numCycles = $ServerList.Count * $numCycles
 
 # Initialize array
 $Hostnames = $null
@@ -123,7 +120,7 @@ for ($e = 1; $e -le $numCycles; $e++) {
 	}
 	Start-Sleep -Seconds 2
 	
-	# Progres Bar 
+	# Progress Bar 
 	if ($e -lt $numCycles) {
 		Clear-Host
 		Write-Host "Cycle" $e "of" $numCycles
